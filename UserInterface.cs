@@ -10,16 +10,19 @@ namespace PROG6221POE
     {
         private RecipeManager recipeManager;
 
+        // Constructor to initialize the RecipeManager object
         public UserInterface()
         {
             recipeManager = new RecipeManager();
         }
 
+        // Start the user interface
         public void Start()
         {
             bool exit = false;
             while (!exit)
             {
+                // Display the menu options
                 Console.WriteLine("\nChoose an option:");
                 Console.WriteLine("1. Enter a new recipe");
                 Console.WriteLine("2. Display recipe");
@@ -29,6 +32,7 @@ namespace PROG6221POE
                 Console.WriteLine("6. Exit");
                 string option = Console.ReadLine();
 
+                // Switch statement to handle the user's choice
                 switch (option)
                 {
                     case "1":
@@ -50,6 +54,7 @@ namespace PROG6221POE
                         exit = true;
                         break;
                     default:
+                        // if user is being silly
                         Console.WriteLine("Invalid option, please try again.");
                         break;
                 }
