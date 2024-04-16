@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace PROG6221POE
 {
     class Program
-    {
+
+
+    {   // Main method to start the program
         static void Main(string[] args)
         {
             // Create a new UserInterface object and start the program
