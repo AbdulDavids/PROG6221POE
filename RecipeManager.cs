@@ -8,6 +8,7 @@ namespace PROG6221POE
 {
     public class RecipeManager
     {
+        // Properties
         public Recipe currentRecipe;
         private List<Ingredient> originalIngredients;
 
@@ -17,6 +18,11 @@ namespace PROG6221POE
             originalIngredients = new List<Ingredient>();
         }
 
+
+        //--------------------------------------------------------------------------------
+        // Methods
+
+        // Create a new recipe
         public void CreateRecipe()
         {
             Console.WriteLine("Enter the number of ingredients:");
@@ -49,6 +55,7 @@ namespace PROG6221POE
             }
         }
 
+        // Scale the recipe
         public void ScaleRecipe()
         {
             Console.WriteLine("Enter scale factor (0.5 for half, 2 for double, 3 for triple):");
@@ -57,12 +64,15 @@ namespace PROG6221POE
             currentRecipe.DisplayRecipe();
         }
 
+        // Reset the recipe
         public void ResetRecipe()
         {
             currentRecipe.ResetQuantities(originalIngredients);
             currentRecipe.DisplayRecipe();
         }
 
+
+        // delete the recipe
         public void ClearRecipe()
         {
             currentRecipe = new Recipe();
