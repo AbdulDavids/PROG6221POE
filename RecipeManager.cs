@@ -8,7 +8,7 @@ namespace PROG6221POE
 {
     public class RecipeManager
     {
-        private Recipe currentRecipe;
+        public Recipe currentRecipe;
         private List<Ingredient> originalIngredients;
 
         public RecipeManager()
