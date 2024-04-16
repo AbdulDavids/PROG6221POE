@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace PROG6221POE
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
+            UserInterface ui = new UserInterface();
+            ui.Start();
         }
     }
+
 }
