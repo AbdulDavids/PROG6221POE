@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace PROG6221POE
 {
     public class Recipe
+        //--------------------------------------------------------------------------------
+
     {
         // Properties
         public List<Ingredient> Ingredients { get; set; }
