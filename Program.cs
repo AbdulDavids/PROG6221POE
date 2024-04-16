@@ -10,8 +10,9 @@ namespace PROG6221POE
     {
         static void Main(string[] args)
         {
+            // Create a new UserInterface object and start the program
             UserInterface ui = new UserInterface();
-            ui.Start();
+            ui.Start(); 
         }
     }
 
