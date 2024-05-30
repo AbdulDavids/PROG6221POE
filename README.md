@@ -42,3 +42,18 @@ The project is developed using C# with .NET Core. Make sure you have [.NET Core 
 
 ### Commits
 ![Screenshot 2024-04-16 180917](https://github.com/AbdulDavids/PROG6221POE/assets/125186956/4f25d317-d9a4-4a10-b2ee-07b39b0b603e)
+
+
+
+
+
+
+### Changes implemented from feedback
+
+In addressing the feedback from Part 1, I have made several enhancements to the application to improve functionality, user experience, and code quality. First, I ensured that each method and class references were clearly defined to maintain dependency integrity. For error handling, I implemented checks for null values and incorrect data types across user inputs, ensuring that the application gracefully handles errors and displays appropriate messages to guide users correctly.
+
+To enhance the user interface, I incorporated colored text in the display menu, which not only makes the application more visually appealing but also improves readability and user interaction. Regarding the scaling feature, I ensured that units of measurement are accurately adjusted according to the scaling factor, thus maintaining the consistency and correctness of recipe details.
+
+Additionally, I added a confirmation step before clearing data, which prevents accidental deletions and ensures that users are aware of their actions. For code readability and maintenance, I introduced separator lines between methods, an end-of-file line, and enriched the code with more meaningful comments to clarify the purpose and functionality of each segment. These adjustments not only address the initial feedback but also significantly enhance the overall quality and user-friendliness of the application.
+
+
