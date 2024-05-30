@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PROG6221POE
 {
@@ -10,36 +6,50 @@ namespace PROG6221POE
     {
         private RecipeManager recipeManager;
 
-        // Constructor to initialize the RecipeManager object
         public UserInterface()
         {
             recipeManager = new RecipeManager();
         }
 
-        // Start the user interface
+        private void CalorieWarning(string message)
+        {
+            Console.WriteLine(message);
+        }
+
         public void Start()
         {
             bool exit = false;
             while (!exit)
             {
-                // Display the menu options
+                Console.Clear();
                 Console.WriteLine("\nChoose an option:");
                 Console.WriteLine("1. Enter a new recipe");
                 Console.WriteLine("2. Display recipe");
                 Console.WriteLine("3. Scale recipe");
                 Console.WriteLine("4. Reset recipe");
                 Console.WriteLine("5. Clear recipe");
-                Console.WriteLine("6. Exit");
+                Console.WriteLine("6. Display all recipes");
+                Console.WriteLine("7. Exit");
                 string option = Console.ReadLine();
 
-                // Switch statement to handle the user's choice
                 switch (option)
                 {
                     case "1":
                         recipeManager.CreateRecipe();
                         break;
                     case "2":
-                        recipeManager.currentRecipe.DisplayRecipe();
+                        Console.WriteLine("Enter the recipe name to display:");
+                        string name = Console.ReadLine();
+                        Recipe recipe = recipeManager.GetRecipe(name);
+                        if (recipe != null)
+                        {
+                            recipe.DisplayRecipe();
+                            recipe.CheckCalories(CalorieWarning);  // Delegate usage
+                        }
+                        else
+                        {
+                            Console.WriteLine("Recipe not found.");
+                        }
                         break;
                     case "3":
                         recipeManager.ScaleRecipe();
@@ -51,16 +61,21 @@ namespace PROG6221POE
                         recipeManager.ClearRecipe();
                         break;
                     case "6":
+                        recipeManager.DisplayAllRecipes();
+                        break;
+                    case "7":
                         exit = true;
                         break;
                     default:
-                        // if user is being silly
                         Console.WriteLine("Invalid option, please try again.");
                         break;
+                }
+                if (!exit)
+                {
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
                 }
             }
         }
     }
-
 }
-//--------------------------------------------------------------------------------
