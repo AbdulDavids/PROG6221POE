@@ -41,8 +41,9 @@ The project is developed using C# with .NET Core. Make sure you have [.NET Core 
 - Choose the appropriate option from the menu to scale, reset, or clear the recipe as needed.
 
 ### Commits
-![Screenshot 2024-04-16 180917](https://github.com/AbdulDavids/PROG6221POE/assets/125186956/4f25d317-d9a4-4a10-b2ee-07b39b0b603e)
+![Part 1 Commit History](https://github.com/AbdulDavids/PROG6221POE/assets/125186956/4f25d317-d9a4-4a10-b2ee-07b39b0b603e)
 
+![Part 2 Commit History](https://github.com/AbdulDavids/PROG6221POE/assets/125186956/b68bb0ae-71dc-4f3d-8fac-e441dc27e571)
 
 
 
