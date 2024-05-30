@@ -8,77 +8,104 @@ namespace PROG6221POE
 {
     public class RecipeManager
     {
-        // Properties
+        public RecipeBook recipeBook;
         public Recipe currentRecipe;
-        private List<Ingredient> originalIngredients;
 
         public RecipeManager()
         {
-            currentRecipe = new Recipe();
-            originalIngredients = new List<Ingredient>();
+            recipeBook = new RecipeBook();
+            currentRecipe = null;
         }
 
-
-        //--------------------------------------------------------------------------------
-        // Methods
-
-        // Create a new recipe
         public void CreateRecipe()
         {
-            Console.WriteLine("Enter the number of ingredients:");
-            int ingredientCount = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter recipe name:");
+            string name = Console.ReadLine();
+            Recipe recipe = new Recipe(name);
 
+            Console.WriteLine("Enter the number of ingredients:");
+            int ingredientCount = int.Parse(Console.ReadLine());
             for (int i = 0; i < ingredientCount; i++)
             {
                 Console.WriteLine($"Enter ingredient {i + 1} name:");
-                string name = Console.ReadLine();
+                string ingredientName = Console.ReadLine();
 
                 Console.WriteLine($"Enter ingredient {i + 1} quantity:");
-                double quantity = Convert.ToDouble(Console.ReadLine());
+                double quantity = double.Parse(Console.ReadLine());
 
                 Console.WriteLine($"Enter ingredient {i + 1} unit of measurement (e.g., tablespoon):");
-                string unitOfMeasurement = Console.ReadLine();
+                string unit = Console.ReadLine();
 
-                Ingredient ingredient = new Ingredient(name, quantity, unitOfMeasurement);
-                currentRecipe.AddIngredient(ingredient);
-                originalIngredients.Add(new Ingredient(name, quantity, unitOfMeasurement));
+                Console.WriteLine($"Enter calories for {ingredientName}:");
+                int calories = int.Parse(Console.ReadLine());
+
+                Console.WriteLine($"Enter food group for {ingredientName}:");
+                string foodGroup = Console.ReadLine();
+
+                Ingredient ingredient = new Ingredient(ingredientName, quantity, unit, calories, foodGroup);
+                recipe.AddIngredient(ingredient);
             }
 
             Console.WriteLine("Enter the number of steps:");
-            int stepCount = Convert.ToInt32(Console.ReadLine());
-
+            int stepCount = int.Parse(Console.ReadLine());
             for (int i = 0; i < stepCount; i++)
             {
                 Console.WriteLine($"Enter step {i + 1} description:");
                 string step = Console.ReadLine();
-                currentRecipe.AddStep(step);
+                recipe.AddStep(step);
             }
+
+            recipeBook.AddRecipe(recipe);
+            currentRecipe = recipe;
         }
 
-        // Scale the recipe
+        public void DisplayRecipe(string name)
+        {
+            Recipe recipe = recipeBook.GetRecipe(name);
+            recipe?.DisplayRecipe();
+        }
+
         public void ScaleRecipe()
         {
+            if (currentRecipe == null)
+            {
+                Console.WriteLine("No current recipe to scale.");
+                return;
+            }
+
             Console.WriteLine("Enter scale factor (0.5 for half, 2 for double, 3 for triple):");
-            double scaleFactor = Convert.ToDouble(Console.ReadLine());
+            double scaleFactor = double.Parse(Console.ReadLine());
             currentRecipe.ScaleRecipe(scaleFactor);
             currentRecipe.DisplayRecipe();
         }
 
-        // Reset the recipe
         public void ResetRecipe()
         {
-            currentRecipe.ResetQuantities(originalIngredients);
+            if (currentRecipe == null)
+            {
+                Console.WriteLine("No current recipe to reset.");
+                return;
+            }
+
+            currentRecipe.ResetQuantities();
             currentRecipe.DisplayRecipe();
         }
 
-
-        // delete the recipe
         public void ClearRecipe()
         {
-            currentRecipe = new Recipe();
-            originalIngredients.Clear();
+            currentRecipe = null;
+            Console.WriteLine("Current recipe data has been cleared.");
+        }
+
+        public void DisplayAllRecipes()
+        {
+            recipeBook.DisplayAllRecipes();
+        }
+
+        // Method to retrieve a recipe by name
+        public Recipe GetRecipe(string name)
+        {
+            return recipeBook.GetRecipe(name);
         }
     }
-
 }
-//--------------------------------------------------------------------------------
