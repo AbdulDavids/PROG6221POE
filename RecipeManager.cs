@@ -16,7 +16,7 @@ namespace PROG6221POE
             recipeBook = new RecipeBook();
             currentRecipe = null;
         }
-
+        //--------------------------------------------------------------------------------------------------------------------
         public void CreateRecipe()  // Create a new recipe
         {
             Console.WriteLine("Enter recipe name:");
@@ -58,13 +58,13 @@ namespace PROG6221POE
             recipeBook.AddRecipe(recipe);
             currentRecipe = recipe;
         }
-
+        //--------------------------------------------------------------------------------------------------------------------
         public void DisplayRecipe(string name)
         {
             Recipe recipe = recipeBook.GetRecipe(name);
             recipe?.DisplayRecipe();
         }
-
+        //--------------------------------------------------------------------------------------------------------------------
         public void ScaleRecipe()  // Scale the current recipe quantities
         {
             if (currentRecipe == null)
@@ -78,7 +78,7 @@ namespace PROG6221POE
             currentRecipe.ScaleRecipe(scaleFactor);
             currentRecipe.DisplayRecipe();
         }
-
+        //--------------------------------------------------------------------------------------------------------------------
         public void ResetRecipe()   // Reset the current recipe quantities
         {
             if (currentRecipe == null)
@@ -90,12 +90,23 @@ namespace PROG6221POE
             currentRecipe.ResetQuantities();
             currentRecipe.DisplayRecipe();
         }
-
-        public void ClearRecipe()   // Clear the current recipe data
+        //--------------------------------------------------------------------------------------------------------------------
+        public void ClearRecipe()
         {
-            currentRecipe = null;
-            Console.WriteLine("Current recipe data has been cleared.");
+            Console.WriteLine("Are you sure you want to clear the current recipe? (yes/no)");// Confirm with user
+            string confirmation = Console.ReadLine().Trim().ToLower();
+
+            if (confirmation == "yes")
+            {
+                currentRecipe = null;
+                Console.WriteLine("Current recipe data has been cleared.");
+            }
+            else
+            {
+                Console.WriteLine("Recipe clear canceled.");
+            }
         }
+        //--------------------------------------------------------------------------------------------------------------------
 
         public void DisplayAllRecipes() // Display all recipes in the recipe book
         {
@@ -109,3 +120,5 @@ namespace PROG6221POE
         }
     }
 }
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

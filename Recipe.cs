@@ -17,17 +17,17 @@ public class Recipe
         Ingredients = new List<Ingredient>();
         Steps = new List<string>();
     }
-
+    //--------------------------------------------------------------------------------------------------------------------
     public void AddIngredient(Ingredient ingredient)
     {
         Ingredients.Add(ingredient);
     }
-
+    //--------------------------------------------------------------------------------------------------------------------
     public void AddStep(string step)
     {
         Steps.Add(step);
     }
-
+    //--------------------------------------------------------------------------------------------------------------------
     public void DisplayRecipe()
     {
         Console.WriteLine($"Recipe: {Name}");
@@ -45,20 +45,20 @@ public class Recipe
             stepNumber++;
         }
     }
-
+    //--------------------------------------------------------------------------------------------------------------------
     public int TotalCalories()
     {
         return Ingredients.Sum(ingredient => ingredient.Calories);
     }
-
+    //--------------------------------------------------------------------------------------------------------------------
     public void CheckCalories(CalorieExceededNotification notification)
     {
-        if (TotalCalories() > 300)
+        if (TotalCalories() > 300) // Check if total calories exceed 300
         {
             notification?.Invoke($"Warning: Total calories for {Name} exceed 300 calories!");
         }
     }
-
+    //--------------------------------------------------------------------------------------------------------------------
     // New method to scale recipe quantities
     public void ScaleRecipe(double factor)
     {
@@ -67,6 +67,7 @@ public class Recipe
             ingredient.Quantity *= factor;  // Scale each ingredient quantity
         }
     }
+    //--------------------------------------------------------------------------------------------------------------------
     public void ResetQuantities()
     {
         foreach (var ingredient in Ingredients)
@@ -76,3 +77,4 @@ public class Recipe
     }
 
 }
+//--------------------------------------------------------------------------------------------------------------------
