@@ -18,7 +18,8 @@ namespace PROG6221POE
         public void AddRecipe(Recipe recipe)
         {
             Recipes.Add(recipe);
-            Recipes.Sort((r1, r2) => r1.Name.CompareTo(r2.Name));
+            // Sort the list each time a new recipe is added
+            Recipes = Recipes.OrderBy(r => r.Name).ToList();
         }
 
         public void DisplayAllRecipes()
