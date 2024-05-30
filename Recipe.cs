@@ -1,74 +1,78 @@
-﻿using System;
+﻿using PROG6221POE;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
+using System.Linq;  
+using PROG6221POE.Notifications;
+using static PROG6221POE.Notifications.Notifications;
 
-namespace PROG6221POE
+public class Recipe
 {
-    public class Recipe
-        //--------------------------------------------------------------------------------
+    public string Name { get; set; }
+    public List<Ingredient> Ingredients { get; set; }
+    public List<string> Steps { get; set; }
 
+    public Recipe(string name)
     {
-        // Properties
-        public List<Ingredient> Ingredients { get; set; }
-        public List<string> Steps { get; set; }
+        Name = name;
+        Ingredients = new List<Ingredient>();
+        Steps = new List<string>();
+    }
 
-        // Constructor
-        public Recipe()
+    public void AddIngredient(Ingredient ingredient)
+    {
+        Ingredients.Add(ingredient);
+    }
+
+    public void AddStep(string step)
+    {
+        Steps.Add(step);
+    }
+
+    public void DisplayRecipe()
+    {
+        Console.WriteLine($"Recipe: {Name}");
+        Console.WriteLine("Ingredients:");
+        foreach (var ingredient in Ingredients)
         {
-            Ingredients = new List<Ingredient>();
-            Steps = new List<string>();
+            Console.WriteLine($"- {ingredient}");
         }
 
-
-        //--------------------------------------------------------------------------------
-        // add ingredient to the list
-        public void AddIngredient(Ingredient ingredient)
+        Console.WriteLine("\nSteps:");
+        int stepNumber = 1;
+        foreach (var step in Steps)
         {
-            Ingredients.Add(ingredient);
+            Console.WriteLine($"{stepNumber}. {step}");
+            stepNumber++;
         }
+    }
 
-        // add step to the list
-        public void AddStep(string step)
+    public int TotalCalories()
+    {
+        return Ingredients.Sum(ingredient => ingredient.Calories);
+    }
+
+    public void CheckCalories(CalorieExceededNotification notification)
+    {
+        if (TotalCalories() > 300)
         {
-            Steps.Add(step);
+            notification?.Invoke($"Warning: Total calories for {Name} exceed 300 calories!");
         }
+    }
 
-        // display the recipe to the console 
-        public void DisplayRecipe()
+    // New method to scale recipe quantities
+    public void ScaleRecipe(double factor)
+    {
+        foreach (var ingredient in Ingredients)
         {
-            Console.WriteLine("Ingredients:");
-            foreach (var ingredient in Ingredients)
-            {
-                Console.WriteLine($"- {ingredient}");
-            }
-
-            Console.WriteLine("\nSteps:");
-            int stepNumber = 1;
-            foreach (var step in Steps)
-            {
-                Console.WriteLine($"{stepNumber}. {step}");
-                stepNumber++;
-            }
+            ingredient.Quantity *= factor;  // Scale each ingredient quantity
         }
-
-
-        // scale the recipe by a factor 
-        public void ScaleRecipe(double factor)
+    }
+    public void ResetQuantities()
+    {
+        foreach (var ingredient in Ingredients)
         {
-            foreach (var ingredient in Ingredients)
-            {
-                ingredient.Quantity *= factor;
-            }
-        }
-
-        // reset the quantities of the ingredients to the original values
-        public void ResetQuantities(List<Ingredient> originalIngredients)
-        {
-            Ingredients = new List<Ingredient>(originalIngredients);
+            ingredient.Quantity = ingredient.OriginalQuantity;  // Reset to original quantity
         }
     }
 
 }
-// --------------------------------------------------------------------------------
