@@ -3,6 +3,10 @@ using PROG6221POE;
 
 namespace PROG6221POETests
 {
+
+    // Reference: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit
+    // Reference: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
+
     [TestFixture]
     public class RecipeTests
     {
