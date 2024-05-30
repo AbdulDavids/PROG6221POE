@@ -22,7 +22,7 @@ namespace PROG6221POE
             Recipes = Recipes.OrderBy(r => r.Name).ToList();
         }
 
-        public void DisplayAllRecipes()
+        public void DisplayAllRecipes() // Display all recipes in the recipe book
         {
             foreach (Recipe recipe in Recipes)
             {
@@ -30,7 +30,7 @@ namespace PROG6221POE
             }
         }
 
-        public Recipe GetRecipe(string name)
+        public Recipe GetRecipe(string name) // Get a recipe by name
         {
             return Recipes.FirstOrDefault(recipe => recipe.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }

@@ -19,7 +19,7 @@ namespace PROG6221POE
         public void Start()
         {
             bool exit = false;
-            while (!exit)
+            while (!exit) // Main menu
             {
                 Console.Clear();
                 Console.WriteLine("\nChoose an option:");
@@ -72,7 +72,7 @@ namespace PROG6221POE
                 }
                 if (!exit)
                 {
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine("Press any key to continue..."); // Pause before next menu
                     Console.ReadKey();
                 }
             }

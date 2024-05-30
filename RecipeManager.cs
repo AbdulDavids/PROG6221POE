@@ -17,7 +17,7 @@ namespace PROG6221POE
             currentRecipe = null;
         }
 
-        public void CreateRecipe()
+        public void CreateRecipe()  // Create a new recipe
         {
             Console.WriteLine("Enter recipe name:");
             string name = Console.ReadLine();
@@ -65,7 +65,7 @@ namespace PROG6221POE
             recipe?.DisplayRecipe();
         }
 
-        public void ScaleRecipe()
+        public void ScaleRecipe()  // Scale the current recipe quantities
         {
             if (currentRecipe == null)
             {
@@ -79,7 +79,7 @@ namespace PROG6221POE
             currentRecipe.DisplayRecipe();
         }
 
-        public void ResetRecipe()
+        public void ResetRecipe()   // Reset the current recipe quantities
         {
             if (currentRecipe == null)
             {
@@ -91,13 +91,13 @@ namespace PROG6221POE
             currentRecipe.DisplayRecipe();
         }
 
-        public void ClearRecipe()
+        public void ClearRecipe()   // Clear the current recipe data
         {
             currentRecipe = null;
             Console.WriteLine("Current recipe data has been cleared.");
         }
 
-        public void DisplayAllRecipes()
+        public void DisplayAllRecipes() // Display all recipes in the recipe book
         {
             recipeBook.DisplayAllRecipes();
         }
