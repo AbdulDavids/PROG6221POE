@@ -11,18 +11,19 @@ namespace PROG6221POE
             recipeManager = new RecipeManager();
         }
 
-        private void CalorieWarning(string message)
-        {
-            Console.WriteLine(message);
-        }
-
         public void Start()
         {
             bool exit = false;
-            while (!exit) // Main menu
+            while (!exit)
             {
                 Console.Clear();
+                // Set the color for the menu titles
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nChoose an option:");
+                Console.ResetColor();  // Reset to default color
+
+                // Set menu options in a different color
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. Enter a new recipe");
                 Console.WriteLine("2. Display recipe");
                 Console.WriteLine("3. Scale recipe");
@@ -30,6 +31,8 @@ namespace PROG6221POE
                 Console.WriteLine("5. Clear recipe");
                 Console.WriteLine("6. Display all recipes");
                 Console.WriteLine("7. Exit");
+                Console.ResetColor();  // Reset to default color
+
                 string option = Console.ReadLine();
 
                 switch (option)
@@ -44,7 +47,7 @@ namespace PROG6221POE
                         if (recipe != null)
                         {
                             recipe.DisplayRecipe();
-                            recipe.CheckCalories(CalorieWarning);  // Delegate usage
+                            recipe.CheckCalories(CalorieWarning);
                         }
                         else
                         {
@@ -70,12 +73,20 @@ namespace PROG6221POE
                         Console.WriteLine("Invalid option, please try again.");
                         break;
                 }
+
                 if (!exit)
                 {
-                    Console.WriteLine("Press any key to continue..."); // Pause before next menu
+                    Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                 }
             }
+        }
+
+        private void CalorieWarning(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }
