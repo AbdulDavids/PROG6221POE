@@ -1,0 +1,36 @@
+﻿<Page x:Class="RecipeManagerApp.FilterRecipesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Filter Recipes">
+    <StackPanel Margin="10">
+        <TextBlock Text="Filter Recipes" FontSize="22" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Ingredient Name:" FontWeight="Bold"/>
+        <TextBox x:Name="IngredientNameTextBox" Margin="0,5,0,10"/>
+
+        <TextBlock Text="Food Group:" FontWeight="Bold"/>
+        <ComboBox x:Name="FoodGroupComboBox" Margin="0,5,0,10">
+            <ComboBoxItem Content="Protein"/>
+            <ComboBoxItem Content="Carbohydrates"/>
+            <ComboBoxItem Content="Fats"/>
+            <ComboBoxItem Content="Vitamins"/>
+            <ComboBoxItem Content="Minerals"/>
+            <!-- Add other food groups as needed -->
+        </ComboBox>
+
+        <TextBlock Text="Maximum Calories:" FontWeight="Bold"/>
+        <TextBox x:Name="MaxCaloriesTextBox" Margin="0,5,0,10"/>
+
+        <Button Content="Apply Filters" Click="ApplyFilters_Click" Margin="0,10"/>
+
+        <ListView x:Name="FilteredRecipesListView" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Recipe Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Ingredients" DisplayMemberBinding="{Binding IngredientsDisplay}"/>
+                    <GridViewColumn Header="Steps" DisplayMemberBinding="{Binding StepsDisplay}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Page>

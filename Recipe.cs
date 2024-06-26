@@ -1,80 +1,44 @@
-﻿using PROG6221POE;
-using System.Collections.Generic;
-using System;
-using System.Linq;  
-using PROG6221POE.Notifications;
-using static PROG6221POE.Notifications.Notifications;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 
-public class Recipe
+namespace RecipeManagerApp
 {
-    public string Name { get; set; }
-    public List<Ingredient> Ingredients { get; set; }
-    public List<string> Steps { get; set; }
+    public class Recipe
+    {
+        public string Name { get; set; }
+        public ObservableCollection<Ingredient> Ingredients { get; set; }
+        public ObservableCollection<string> Steps { get; set; }
 
-    public Recipe(string name)
-    {
-        Name = name;
-        Ingredients = new List<Ingredient>();
-        Steps = new List<string>();
-    }
-    //--------------------------------------------------------------------------------------------------------------------
-    public void AddIngredient(Ingredient ingredient)
-    {
-        Ingredients.Add(ingredient);
-    }
-    //--------------------------------------------------------------------------------------------------------------------
-    public void AddStep(string step)
-    {
-        Steps.Add(step);
-    }
-    //--------------------------------------------------------------------------------------------------------------------
-    public void DisplayRecipe()
-    {
-        Console.WriteLine($"Recipe: {Name}");
-        Console.WriteLine("Ingredients:");
-        foreach (var ingredient in Ingredients)
+        public Recipe()
         {
-            Console.WriteLine($"- {ingredient}");
+            Ingredients = new ObservableCollection<Ingredient>();
+            Steps = new ObservableCollection<string>();
         }
 
-        Console.WriteLine("\nSteps:");
-        int stepNumber = 1;
-        foreach (var step in Steps)
+        public string IngredientsDisplay
         {
-            Console.WriteLine($"{stepNumber}. {step}");
-            stepNumber++;
+            get
+            {
+                return string.Join(", ", Ingredients.Select(i => $"{i.Name} ({i.Quantity} {i.Unit})"));
+            }
+        }
+
+        public string StepsDisplay
+        {
+            get
+            {
+                return string.Join(", ", Steps);
+            }
+        }
+
+        public void Scale(double factor)
+        {
+            foreach (var ingredient in Ingredients)
+            {
+                ingredient.Quantity *= factor;
+            }
         }
     }
-    //--------------------------------------------------------------------------------------------------------------------
-    public int TotalCalories()
-    {
-        return Ingredients.Sum(ingredient => ingredient.Calories);
-    }
-    //--------------------------------------------------------------------------------------------------------------------
-    public void CheckCalories(CalorieExceededNotification notification)
-    {
-        if (TotalCalories() > 300) // Check if total calories exceed 300
-        {
-            notification?.Invoke($"Warning: Total calories for {Name} exceed 300 calories!");
-        }
-    }
-    //--------------------------------------------------------------------------------------------------------------------
-    // New method to scale recipe quantities
-    public void ScaleRecipe(double factor)
-    {
-        foreach (var ingredient in Ingredients)
-        {
-            ingredient.Quantity *= factor;  // Scale each ingredient quantity
-        }
-    }
-    //--------------------------------------------------------------------------------------------------------------------
-    public void ResetQuantities()
-    {
-        foreach (var ingredient in Ingredients)
-        {
-            ingredient.Quantity = ingredient.OriginalQuantity;  // Reset to original quantity
-        }
-    }
+
 
 }
-//--------------------------------------------------------------------------------------------------------------------

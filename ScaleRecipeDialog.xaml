@@ -1,0 +1,12 @@
+﻿<Window x:Class="RecipeManagerApp.ScaleRecipeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Scale Recipe" Height="200" Width="300">
+    <Border Padding="10">
+        <StackPanel>
+            <TextBlock Text="Enter Scaling Factor:"/>
+            <TextBox x:Name="ScalingFactorTextBox" Margin="0,10"/>
+            <Button Content="Scale" HorizontalAlignment="Right" Margin="0,10" Click="ScaleButton_Click"/>
+        </StackPanel>
+    </Border>
+</Window>
